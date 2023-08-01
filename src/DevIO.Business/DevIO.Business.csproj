@@ -41,6 +41,7 @@
     <Compile Include="Models\Fornecedores\IEnderecoRepesitory.cs" />
     <Compile Include="Models\Fornecedores\IFornecedorRepository.cs" />
     <Compile Include="Models\Fornecedores\TipoFornecedor.cs" />
+    <Compile Include="Models\Produtos\IProdutoRepository.cs" />
     <Compile Include="Models\Produtos\Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
