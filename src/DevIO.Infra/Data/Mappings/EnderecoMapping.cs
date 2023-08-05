@@ -28,16 +28,13 @@ namespace DevIO.Infra.Data.Mappings
                 .IsFixedLength ( );
 
             Property ( e => e.Bairro )
-                .IsRequired ( )
-                .HasMaxLength ( 100 );
+                .IsRequired ( );
 
             Property ( e => e.Cidade )
-                .IsRequired ( )
-                .HasMaxLength ( 100 );
+                .IsRequired ( );
 
             Property(e=>e.Estado)
-                .IsRequired ( )
-                .HasMaxLength( 100 );
+                .IsRequired ( );
 
             ToTable ( "Enderecos" );
         }
