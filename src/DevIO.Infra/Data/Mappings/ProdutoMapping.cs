@@ -10,16 +10,14 @@ namespace DevIO.Infra.Data.Mappings
             HasKey ( p => p.Id );
 
             Property ( p => p.Nome )
-                .IsRequired ( )
-                .HasMaxLength ( 100 );
+                .IsRequired ( );
 
             Property ( p => p.Descricao )
                 .IsRequired ( )
                 .HasMaxLength ( 1000 );
 
             Property(p=>p.Imagem)
-                .IsRequired ( )
-                .HasMaxLength ( 100 );
+                .IsRequired ( );
 
             // O Fornecedor é requerido, o relacionamento é de um para muitos,
             // ou seja, um fornecedor pode ter muitos produtos,
