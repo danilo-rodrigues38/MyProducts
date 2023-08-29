@@ -22,6 +22,8 @@ namespace DevIO.Infra.Data.Repository
         protected Repository()
         {
             Db = new MyDbContext();
+
+            // DbSet é um atalho a entidade TEntity
             DbSet = Db.Set<TEntity>();
         }
 
