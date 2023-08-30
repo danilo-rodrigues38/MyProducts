@@ -27,7 +27,7 @@ namespace DevIO.Infra.Data.Repository
             DbSet = Db.Set<TEntity>();
         }
 
-        // O método será virtual e ascincronos, o método recebeu um id e retorna uma consulta,
+        // O método será virtual e ascíncronos, o método recebeu um id e retorna uma consulta,
         // retornado uma entidade através da chave primária.
         public virtual async Task<TEntity> Obter ( Guid id )
         {
@@ -45,7 +45,7 @@ namespace DevIO.Infra.Data.Repository
         public async Task<IEnumerable<TEntity>> Buscar ( Expression<Func<TEntity, bool>> predicate )
         {
             // O "AsNoTraking", desabilita o Traker da consulta para dar perfornance no banco de dados, pois
-            // o EntityFramework não precisa acompanhar os dados da entidade para ver se ela nudou para ver
+            // o EntityFramework não precisa acompanhar os dados da entidade para ver se ela mudou para ver
             // se precisa persistir novamente no banco de dados.
             // O "predicate" é onde o método recebe a expressão para a pesquisa no banco de dados.
             return await DbSet.AsNoTracking ( ).Where ( predicate ).ToListAsync ( );
@@ -71,7 +71,7 @@ namespace DevIO.Infra.Data.Repository
         // vai criar uma nova entidade pelo id recebido, vai verificar o estado da entidade e irá
         // remove-la do banco de dados.
         // Para dar um "new" em TEntity, você precisa definir no escopo/assinatura da classe que é
-        // possível iniciar uma nova classe/entidade.
+        // possível iniciar uma nova classe/entidade, incluindo depois de "Entity" uma vírgula e o "new()".
         public virtual async Task Remover ( Guid id )
         {
             Db.Entry ( new TEntity { Id = id } ).State = EntityState.Deleted;

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace DevIO.Business.Models.Fornecedores
 {
-    public interface IEnderecoRepesitory : IRepository<Endereco>
+    public interface IEnderecoRepository : IRepository<Endereco>
     {
         Task<Endereco> ObterEnderecoPorFornecedor ( Guid FornecedorId );
     }
