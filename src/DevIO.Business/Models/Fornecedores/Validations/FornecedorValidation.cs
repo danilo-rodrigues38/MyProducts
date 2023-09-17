@@ -3,11 +3,11 @@ using FluentValidation;
 
 namespace DevIO.Business.Models.Fornecedores.Validations
 {
-    public class FronecedorValidation : AbstractValidator<Fornecedor>
+    public class FornecedorValidation : AbstractValidator<Fornecedor>
     {
-        public FronecedorValidation()
+        public FornecedorValidation()
         {
-            // FuleFor - Cria as regras para o campo "Nome".
+            // RuleFor - Cria as regras para o campo "Nome".
             // PropertName - exibe na tela o nome do campo, neste caso "Nome".
             // MinLength - valor mínimo permitido, no caso, 2 caracteres.
             // MaxLength - valor máximo permitido, no caso, 200 caracteres.
