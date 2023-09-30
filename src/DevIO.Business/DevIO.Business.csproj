@@ -53,6 +53,8 @@
     <Compile Include="Models\Fornecedores\Validations\ProdutoValidation.cs" />
     <Compile Include="Models\Produtos\IProdutoRepository.cs" />
     <Compile Include="Models\Produtos\Produto.cs" />
+    <Compile Include="Models\Produtos\Services\IProdutoService.cs" />
+    <Compile Include="Models\Produtos\Services\ProdutoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

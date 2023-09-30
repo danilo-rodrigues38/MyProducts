@@ -1,8 +1,8 @@
-﻿using DevIO.Business.Core.Services;
-using DevIO.Business.Models.Fornecedores.Validations;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DevIO.Business.Core.Services;
+using DevIO.Business.Models.Fornecedores.Validations;
 
 namespace DevIO.Business.Models.Fornecedores.Services
 {
