@@ -59,7 +59,7 @@ namespace DevIO.ApplicationMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _produtoService.adicionar(produtoViewModel);
+                _produtoService.Adicionar(produtoViewModel);
 
                 return RedirectToAction("Index");
             }
