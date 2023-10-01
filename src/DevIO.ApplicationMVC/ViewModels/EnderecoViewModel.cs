@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace DevIO.ApplicationMVC.ViewModels
 {
@@ -40,5 +41,8 @@ namespace DevIO.ApplicationMVC.ViewModels
         [Required ( ErrorMessage = "O campo {0} é obrigatório." )]
         [StringLength ( 50, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres.", MinimumLength = 2 )]
         public string Estado { get; set; }
+
+        [HiddenInput]
+        public Guid FornecedorId { get; set; }
     }
 }
