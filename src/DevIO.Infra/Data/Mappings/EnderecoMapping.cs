@@ -10,7 +10,7 @@ namespace DevIO.Infra.Data.Mappings
             HasKey ( e => e.Id );
 
             Property ( e => e.Logradouro )
-                //.HasColumnName("Rua") // Caso no seu Banco de Dados exixta a coluna Rua.
+                //.HasColumnName("Rua") // Caso no seu Banco de Dados exista a coluna Rua.
                 .IsRequired ( )
                 .HasMaxLength ( 200 );
 
