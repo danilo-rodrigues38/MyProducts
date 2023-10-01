@@ -15,7 +15,7 @@ namespace DevIO.Business.Models.Produtos.Services
             _produtoRepository = produtoRepository;
         }
 
-        public async Task adicionar ( Produto produto )
+        public async Task Adicionar ( Produto produto )
         {
             if (!ExecutarValidacao(new ProdutoValidation(), produto)) return;
 

@@ -5,7 +5,7 @@ namespace DevIO.Business.Models.Produtos.Services
 {
     public interface IProdutoService : IDisposable
     {
-        Task adicionar ( Produto produto );
+        Task Adicionar ( Produto produto );
         Task Atualizar ( Produto produto );
         Task Remover ( Guid id );
     }
