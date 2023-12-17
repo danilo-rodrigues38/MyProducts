@@ -19,9 +19,9 @@ namespace DevIO.Infra.Data.Repository
         // DbSet é um acesso rápido a minha entidade, enquanto o Db é o contexto em geral.
         protected readonly DbSet<TEntity> DbSet;
 
-        protected Repository()
+        protected Repository(MyDbContext db)
         {
-            Db = new MyDbContext();
+            Db = db;
 
             // DbSet é um atalho a entidade TEntity
             DbSet = Db.Set<TEntity>();

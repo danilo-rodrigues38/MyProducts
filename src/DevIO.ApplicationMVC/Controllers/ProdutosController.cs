@@ -19,9 +19,13 @@ namespace DevIO.ApplicationMVC.Controllers
         private readonly IProdutoService _produtoService;       // Para fazer a persistência no banco de dados.
         private readonly IMapper _mapper;                       // Para fazer o mapeamento.
 
-        public ProdutosController()
+        public ProdutosController(IProdutoRepository produtoRepository,
+                                  IProdutoService produtoService,
+                                  IMapper mapper)
         {
-
+            _produtoRepository = produtoRepository;
+            _produtoService = produtoService;
+            _mapper = mapper;
         }
 
         [Route("lista-de-produtos")]
