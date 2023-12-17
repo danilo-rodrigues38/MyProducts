@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Threading.Tasks;
-using System.Net;
 using System.Web.Mvc;
 using AutoMapper;
 using DevIO.ApplicationMVC.ViewModels;
-using DevIO.Business.Core.Notifications;
 using DevIO.Business.Models.Produtos;
 using DevIO.Business.Models.Produtos.Services;
-using DevIO.Infra.Data.Repository;
 
 namespace DevIO.ApplicationMVC.Controllers
 {
     public class ProdutosController : Controller
     {
         private readonly IProdutoRepository _produtoRepository; // Para fazer leitura do banco de dados.
-        private readonly IProdutoService _produtoService;       // Para fazer a persistência no banco de dados.
+        private readonly IProdutoService _produtoService;       // Para fazer a persistência (salvar, editar ou excluir) no banco de dados.
         private readonly IMapper _mapper;                       // Para fazer o mapeamento.
 
         public ProdutosController(IProdutoRepository produtoRepository,

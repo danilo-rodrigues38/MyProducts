@@ -41,11 +41,11 @@ namespace DevIO.ApplicationMVC
             // Cria uma única instância por request.
 
             container.Register<MyDbContext>(Lifestyle.Scoped);
-            container.Register<IProdutoRepository, IProdutoRepository>(Lifestyle.Scoped);
+            container.Register<IProdutoRepository, ProdutoRepository>(Lifestyle.Scoped);
             container.Register<IProdutoService, ProdutoService>(Lifestyle.Scoped);
-            container.Register<IFornecedorRepository, IFornecedorRepository>(Lifestyle.Scoped);
+            container.Register<IFornecedorRepository, FornecedorRepository>(Lifestyle.Scoped);
             container.Register<IFornecedorService, FornecedorService>(Lifestyle.Scoped);
-            container.Register<IEnderecoRepository, IEnderecoRepository>(Lifestyle.Scoped);
+            container.Register<IEnderecoRepository, EnderecoRepository>(Lifestyle.Scoped);
             container.Register<INotificador, Notificador>(Lifestyle.Scoped);
 
             container.RegisterSingleton(() => AutoMapperConfig.GetMapperConfiguration().CreateMapper(container.GetInstance));
