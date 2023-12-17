@@ -9,7 +9,7 @@ using DevIO.Business.Models.Produtos.Services;
 
 namespace DevIO.ApplicationMVC.Controllers
 {
-    public class ProdutosController : Controller
+    public class ProdutosController : BaseController
     {
         private readonly IProdutoRepository _produtoRepository; // Para fazer leitura do banco de dados.
         private readonly IProdutoService _produtoService;       // Para fazer a persistência (salvar, editar ou excluir) no banco de dados.
