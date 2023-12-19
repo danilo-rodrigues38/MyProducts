@@ -1,8 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using DevIO.Business.Core.Notifications;
+﻿using DevIO.Business.Core.Notificacoes;
 using DevIO.Business.Core.Services;
 using DevIO.Business.Models.Fornecedores.Validations;
+using System;
+using System.Threading.Tasks;
+using DevIO.Business.Models.Produtos.Validations;
 
 namespace DevIO.Business.Models.Produtos.Services
 {

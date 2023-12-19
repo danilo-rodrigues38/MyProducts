@@ -59,6 +59,7 @@ namespace DevIO.ApplicationMVC.Controllers
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
+
             await _fornecedorService.Adicionar(fornecedor);
 
             // TODO:

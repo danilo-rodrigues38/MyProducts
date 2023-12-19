@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Web.Mvc;
-using DevIO.Business.Core.Notifications;
+using DevIO.Business.Core.Notificacoes;
 using DevIO.Business.Models.Fornecedores;
 using DevIO.Business.Models.Fornecedores.Services;
 using DevIO.Business.Models.Produtos;

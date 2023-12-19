@@ -1,4 +1,4 @@
-﻿namespace DevIO.Business.Core.Notifications
+﻿namespace DevIO.Business.Core.Notificacoes
 {
     public class Notificacao
     {

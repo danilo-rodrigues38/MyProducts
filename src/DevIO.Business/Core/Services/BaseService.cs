@@ -1,5 +1,5 @@
 ﻿using DevIO.Business.Core.Models;
-using DevIO.Business.Core.Notifications;
+using DevIO.Business.Core.Notificacoes;
 using FluentValidation;
 using FluentValidation.Results;
 

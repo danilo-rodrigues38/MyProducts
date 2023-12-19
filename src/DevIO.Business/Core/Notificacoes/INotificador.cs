@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DevIO.Business.Core.Notifications
+namespace DevIO.Business.Core.Notificacoes
 {
     public interface INotificador
     {
