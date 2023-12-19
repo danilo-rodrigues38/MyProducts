@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using AutoMapper;
 using DevIO.ApplicationMVC.ViewModels;
 using DevIO.Business.Models.Fornecedores;
 using DevIO.Business.Models.Fornecedores.Services;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 
 namespace DevIO.ApplicationMVC.Controllers
 {
@@ -29,10 +28,10 @@ namespace DevIO.ApplicationMVC.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            return View(_mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos()));
+            return View( _mapper.Map<IEnumerable<FornecedorViewModel>> (await _fornecedorRepository.ObterTodos()));
         }
 
-        [Route("lista-de-fornecedores")]
+        [Route("dados-do-fornecedor/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
         {
@@ -65,7 +64,7 @@ namespace DevIO.ApplicationMVC.Controllers
             // TODO:
             // E se não der certo?
 
-            return RedirectToAction("Index");
+            return RedirectToAction ("Index");
         }
 
         [Route("editar-fornecedor/{id:guid}")]
@@ -81,8 +80,10 @@ namespace DevIO.ApplicationMVC.Controllers
 
             return View(fornecedorViewModel);
         }
+
         [Route("editar-fornecedor/{id:guid}")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Guid id, FornecedorViewModel fornecedorViewModel)
         {
             if (id != fornecedorViewModel.Id) return HttpNotFound();
@@ -95,7 +96,7 @@ namespace DevIO.ApplicationMVC.Controllers
             // TODO:
             // E se não der certo?
 
-            return RedirectToAction("Index");
+            return RedirectToAction ("Index");
         }
 
         [Route("excluir-fornecedor/{id:guid}")]
@@ -114,6 +115,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         [Route ( "excluir-fornecedor/{id:guid}" )]
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)
         {
             var fornecedor = await ObterFornecedorEndereco(id);
@@ -125,7 +127,7 @@ namespace DevIO.ApplicationMVC.Controllers
             // TODO:
             // E se não der certo?
 
-            return RedirectToAction("Index");
+            return RedirectToAction ("Index");
         }
 
         private async Task<FornecedorViewModel> ObterFornecedorEndereco(Guid id)
@@ -136,6 +138,16 @@ namespace DevIO.ApplicationMVC.Controllers
         private async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
         {
             return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorProdutoEndereco(id));
+        }
+
+        protected override void Dispose ( bool disposing )
+        {
+            if (disposing)
+            {
+                _fornecedorRepository.Dispose ( );
+                _fornecedorService.Dispose ( );
+            }
+            base.Dispose ( disposing );
         }
     }
 }

@@ -28,7 +28,7 @@ namespace DevIO.ApplicationMVC.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            return View( _mapper.Map<IEnumerable<ProdutoViewModel>> (await _produtoRepository.ObterTodos ()));
+            return View( _mapper.Map<IEnumerable<ProdutoViewModel>> (await _produtoRepository.ObterTodos()));
         }
 
         [Route("dados-de-produto/{id:guid}")]
