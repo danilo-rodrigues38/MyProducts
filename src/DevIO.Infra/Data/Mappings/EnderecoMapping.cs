@@ -18,10 +18,6 @@ namespace DevIO.Infra.Data.Mappings
                 .IsRequired ( )
                 .HasMaxLength ( 5 );
 
-            Property ( e => e.Complemento )
-                .IsRequired ( )
-                .HasMaxLength ( 50 );
-
             Property ( e => e.Cep )
                 .IsRequired ( )
                 .HasMaxLength ( 8 )

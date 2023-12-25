@@ -29,10 +29,6 @@ namespace DevIO.Business.Models.Fornecedores.Validations
             RuleFor ( c => c.Numero )
                 .NotEmpty ( ).WithMessage ( "O campo {PropertyMane} precisa ser fornecido." )
                 .Length ( 2, 5 ).WithMessage ( "O campo {PropertyName} precisa ter entre {MinLength} e {MaxLength} caracteres." );
-
-            RuleFor ( c => c.Complemento )
-                .NotEmpty ( ).WithMessage ( "O campo {PropertyMane} precisa ser fornecido." )
-                .Length ( 2, 50 ).WithMessage ( "O campo {PropertyName} precisa ter entre {MinLength} e {MaxLength} caracteres." );
         }
     }
 }
