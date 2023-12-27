@@ -62,8 +62,6 @@ namespace DevIO.ApplicationMVC.Controllers
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
-            fornecedor.Endereco.Fornecedor = fornecedor;
-            // Para que o código pudesse salvar no banco de dados foi acrescentado a linha acima.
 
             await _fornecedorService.Adicionar(fornecedor);
 
