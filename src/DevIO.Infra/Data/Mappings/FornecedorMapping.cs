@@ -23,7 +23,7 @@ namespace DevIO.Infra.Data.Mappings
                 .IsRequired ( )
                 .HasMaxLength ( 14 )
                 .HasColumnAnnotation ( "IX_Documento",
-                new IndexAnnotation ( new IndexAttribute { IsUnique = true } ) );
+                    new IndexAnnotation ( new IndexAttribute { IsUnique = true } ) );
 
             // Faz a relação do Fornecedor com o Endereço, ou seja, o Fornecedor tem que ter o endereço.
             HasRequired ( f => f.Endereco )

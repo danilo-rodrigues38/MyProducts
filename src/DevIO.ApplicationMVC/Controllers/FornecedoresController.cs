@@ -62,6 +62,8 @@ namespace DevIO.ApplicationMVC.Controllers
             if (!ModelState.IsValid) return View(fornecedorViewModel);
 
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
+            fornecedor.Endereco.Fornecedor = fornecedor;
+            // Para que o código pudesse salvar no banco de dados foi acrescentado a linha acima.
 
             await _fornecedorService.Adicionar(fornecedor);
 
@@ -145,6 +147,7 @@ namespace DevIO.ApplicationMVC.Controllers
         public async Task<ActionResult> AtualizarEndereco(Guid id )
         {
             var fornecedor = await ObterFornecedorEndereco(id);
+
             if(fornecedor == null)
             {
                 return HttpNotFound ();

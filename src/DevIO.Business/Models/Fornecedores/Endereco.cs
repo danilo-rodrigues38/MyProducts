@@ -13,6 +13,7 @@ namespace DevIO.Business.Models.Fornecedores
         public string Estado { get; set; }
 
         /* EF Relactions */
-        public Fornecedor Fornecedor { get; set; }
+        public Fornecedor Fornecedor { get; set; } = null;
+        // Para que o código pudesse salvar no banco de dados foi setado inicialmente o fornecedor como nulo.
     }
 }

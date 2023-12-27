@@ -9,27 +9,30 @@ namespace DevIO.Infra.Data.Mappings
         {
             HasKey ( e => e.Id );
 
-            Property ( e => e.Logradouro )
+            Property ( c => c.Logradouro )
                 //.HasColumnName("Rua") // Caso no seu Banco de Dados exista a coluna Rua.
                 .IsRequired ( )
                 .HasMaxLength ( 200 );
 
-            Property ( e => e.Numero )
+            Property ( c => c.Numero )
                 .IsRequired ( )
-                .HasMaxLength ( 5 );
+                .HasMaxLength ( 50 );
 
-            Property ( e => e.Cep )
+            Property ( c => c.Cep )
                 .IsRequired ( )
                 .HasMaxLength ( 8 )
                 .IsFixedLength ( );
 
-            Property ( e => e.Bairro )
+            Property ( c => c.Complemento )
+                .HasMaxLength ( 250 );
+
+            Property ( c => c.Bairro )
                 .IsRequired ( );
 
-            Property ( e => e.Cidade )
+            Property ( c => c.Cidade )
                 .IsRequired ( );
 
-            Property(e=>e.Estado)
+            Property ( c => c.Estado )
                 .IsRequired ( );
 
             ToTable ( "Enderecos" );

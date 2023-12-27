@@ -28,10 +28,10 @@ namespace DevIO.Infra.Data.Context
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention> ( );
 
             // ManyToManyCascadeDeleteConvention - removendo a deleção em cascata de muitos para muitos.
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention> ( );
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention> ( );
 
             // OneToManyCascadeDeleteConvention - removendo a deleção em cascada de um para muitos.
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention> ( );
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention> ( );
 
 
             // Todas as propriedades que forem do tipo "string" será configurada como

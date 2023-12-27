@@ -9,11 +9,11 @@
         <span aria-hidden="true">×</span><span class="sr-only">Fechar</span>
     </button>
 </div>
-
 <br /><br />
 @using (Html.BeginForm ( ))
 {
     @Html.AntiForgeryToken( )
+
     <div class="form-horizontal col-md-offset-1">
 
         @Html.HiddenFor( model => model.Endereco.FornecedorId )
