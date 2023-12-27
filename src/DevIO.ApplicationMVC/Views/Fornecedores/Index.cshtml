@@ -2,6 +2,7 @@
     Model em maiúculo, se refere a model de fato, a entidade.
     Vamos ter um IEnumerable, ou seja, uma lista de FornecedorViewModel, que é o modelo que vamos trabalhar.-->
 
+@using DevIO.ApplicationMVC.Extensions
 @model IEnumerable<DevIO.ApplicationMVC.ViewModels.FornecedorViewModel>
 
 @{
@@ -42,7 +43,7 @@
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Documento)
+                    @this.FormatarDocumento(item.TipoFornecedor, item.Documento)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Ativo)

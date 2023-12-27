@@ -2,7 +2,7 @@ using System;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DevIO.AppMvc.Extensions
+namespace DevIO.ApplicationMVC.Extensions
 {
     public static class RazorExtensions
     {
@@ -21,12 +21,12 @@ namespace DevIO.AppMvc.Extensions
         //    return CustomAuthorization.ValidarClaimsUsuario ( claimName, claimValue ) ? urlHelper.Action ( actionName, controllerName, routeValues ) : "";
         //}
 
-        //public static string FormatarDocumento ( this WebViewPage page, int tipoPessoa, string documento )
-        //{
-        //    return tipoPessoa == 1
-        //        ? Convert.ToUInt64 ( documento ).ToString ( @"000\.000\.000\-00" )
-        //        : Convert.ToUInt64 ( documento ).ToString ( @"00\.000\.000\/0000\-00" );
-        //}
+        public static string FormatarDocumento ( this WebViewPage page, int tipoPessoa, string documento )
+        {
+            return tipoPessoa == 1
+                ? Convert.ToUInt64 ( documento ).ToString ( @"000\.000\.000\-00" )
+                : Convert.ToUInt64 ( documento ).ToString ( @"00\.000\.000\/0000\-00" );
+        }
 
         public static bool ExibirNaURL ( this WebViewPage value, Guid Id )
         {
