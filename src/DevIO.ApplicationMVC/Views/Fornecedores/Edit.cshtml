@@ -13,6 +13,8 @@
     @Html.AntiForgeryToken( )
     <div class="form-horizontal">
 
+        @Html.Partial("_ErrorSummary")
+
         @Html.HiddenFor( model => model.Id )
 
         <div class="form-group">

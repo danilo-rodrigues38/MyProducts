@@ -18,15 +18,15 @@ namespace DevIO.ApplicationMVC
         public static void RegisterDIContainer()
         {
             var container = new Container();
-            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle ( );
 
-            InitializerContainer(container);
+            InitializerContainer ( container );
 
-            container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+            container.RegisterMvcControllers ( Assembly.GetExecutingAssembly ( ) );
 
-            container.Verify();
+            container.Verify ( );
 
-            DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+            DependencyResolver.SetResolver ( new SimpleInjectorDependencyResolver ( container ) );
         }
 
         private static void InitializerContainer(Container container)
@@ -40,15 +40,15 @@ namespace DevIO.ApplicationMVC
             // Lifestyle.Scoped
             // Cria uma única instância por request.
 
-            container.Register<MyDbContext>(Lifestyle.Scoped);
-            container.Register<IProdutoRepository, ProdutoRepository>(Lifestyle.Scoped);
-            container.Register<IProdutoService, ProdutoService>(Lifestyle.Scoped);
-            container.Register<IFornecedorRepository, FornecedorRepository>(Lifestyle.Scoped);
-            container.Register<IFornecedorService, FornecedorService>(Lifestyle.Scoped);
-            container.Register<IEnderecoRepository, EnderecoRepository>(Lifestyle.Scoped);
-            container.Register<INotificador, Notificador>(Lifestyle.Scoped);
+            container.Register<MyDbContext> ( Lifestyle.Scoped );
+            container.Register<IProdutoRepository, ProdutoRepository> ( Lifestyle.Scoped );
+            container.Register<IProdutoService, ProdutoService> ( Lifestyle.Scoped );
+            container.Register<IFornecedorRepository, FornecedorRepository> ( Lifestyle.Scoped );
+            container.Register<IFornecedorService, FornecedorService> ( Lifestyle.Scoped );
+            container.Register<IEnderecoRepository, EnderecoRepository> ( Lifestyle.Scoped );
+            container.Register<INotificador, Notificador> ( Lifestyle.Scoped );
 
-            container.RegisterSingleton(() => AutoMapperConfig.GetMapperConfiguration().CreateMapper(container.GetInstance));
+            container.RegisterSingleton ( ( ) => AutoMapperConfig.GetMapperConfiguration ( ).CreateMapper ( container.GetInstance ) );
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using DevIO.ApplicationMVC.ViewModels;
+using DevIO.Business.Core.Notificacoes;
 using DevIO.Business.Models.Fornecedores;
 using DevIO.Business.Models.Produtos;
 using DevIO.Business.Models.Produtos.Services;
@@ -22,7 +23,8 @@ namespace DevIO.ApplicationMVC.Controllers
         public ProdutosController(IProdutoRepository produtoRepository,
                                   IProdutoService produtoService,
                                   IFornecedorRepository fornecedorRepository,
-                                  IMapper mapper)
+                                  IMapper mapper,
+                                  INotificador notificador) : base(notificador)
         {
             _produtoRepository = produtoRepository;
             _produtoService = produtoService;
@@ -30,12 +32,16 @@ namespace DevIO.ApplicationMVC.Controllers
             _mapper = mapper;
         }
 
-        [Route("lista-de-produtos")]
+        #region Index
+
+        [Route ("lista-de-produtos")]
         [HttpGet]
         public async Task<ActionResult> Index()
         {
             return View ( _mapper.Map<IEnumerable<ProdutoViewModel>> ( await _produtoRepository.ObterProdutosFornecedores ( ) ) );
         }
+
+        #endregion
 
         #region Details
 
@@ -174,6 +180,8 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #endregion
 
+        #region ObterProduto
+
         private async Task<ProdutoViewModel> ObterProduto(Guid id)
         {
             var produto = _mapper.Map<ProdutoViewModel>(await _produtoRepository.ObterProdutoFornecedores(id));
@@ -181,11 +189,19 @@ namespace DevIO.ApplicationMVC.Controllers
             return produto;
         }
 
+        #endregion
+
+        #region PopularFornecedores
+
         private async Task<ProdutoViewModel> PopularFornecedores(ProdutoViewModel produto )
         {
             produto.Fornecedores = _mapper.Map<IEnumerable<FornecedorViewModel>> ( await _fornecedorRepository.ObterTodos ( ) );
             return produto;
         }
+
+        #endregion
+
+        #region UploadImagem
 
         private bool UploadImagem ( HttpPostedFileBase img, string imgPrefixo )
         {
@@ -207,6 +223,10 @@ namespace DevIO.ApplicationMVC.Controllers
             return true;
         }
 
+        #endregion
+
+        #region Dispose
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -216,5 +236,7 @@ namespace DevIO.ApplicationMVC.Controllers
             }
             base.Dispose(disposing);
         }
+
+        #endregion
     }
 }

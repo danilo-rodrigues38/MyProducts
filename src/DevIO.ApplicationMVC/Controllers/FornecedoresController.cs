@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
 using DevIO.ApplicationMVC.ViewModels;
+using DevIO.Business.Core.Notificacoes;
 using DevIO.Business.Models.Fornecedores;
 using DevIO.Business.Models.Fornecedores.Services;
 
@@ -17,19 +18,24 @@ namespace DevIO.ApplicationMVC.Controllers
 
         public FornecedoresController(IFornecedorRepository fornecedorRepository,
                                       IFornecedorService fornecedorService,
-                                      IMapper mapper)
+                                      IMapper mapper,
+                                      INotificador notificador ) : base ( notificador )
         {
             _fornecedorRepository = fornecedorRepository;
             _fornecedorService = fornecedorService;
             _mapper = mapper;
         }
 
-        [Route("lista-de-fornecedores")]
+        #region Index
+
+        [Route ("lista-de-fornecedores")]
         [HttpGet]
         public async Task<ActionResult> Index()
         {
             return View( _mapper.Map<IEnumerable<FornecedorViewModel>> (await _fornecedorRepository.ObterTodos()));
         }
+
+        #endregion
 
         #region Datails
         [Route ("dados-do-fornecedor/{id:guid}")]
@@ -65,8 +71,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
             await _fornecedorService.Adicionar(fornecedor);
 
-            // TODO:
-            // E se não der certo?
+            if (!OperaçãoValida ( )) return View ( fornecedorViewModel );
 
             return RedirectToAction ("Index");
         }
@@ -99,8 +104,7 @@ namespace DevIO.ApplicationMVC.Controllers
             var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
             await _fornecedorService.Atualizar(fornecedor);
 
-            // TODO:
-            // E se não der certo?
+            if (!OperaçãoValida ( )) return View ( fornecedorViewModel );
 
             return RedirectToAction ("Index");
         }
@@ -198,6 +202,8 @@ namespace DevIO.ApplicationMVC.Controllers
         }
         #endregion
 
+        #region Dispose
+
         protected override void Dispose ( bool disposing )
         {
             if (disposing)
@@ -207,5 +213,7 @@ namespace DevIO.ApplicationMVC.Controllers
             }
             base.Dispose ( disposing );
         }
+
+        #endregion
     }
 }
