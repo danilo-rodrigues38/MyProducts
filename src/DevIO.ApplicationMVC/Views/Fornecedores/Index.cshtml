@@ -1,17 +1,13 @@
-﻿<!--model em minúsculo, se refere ao modelo
-    Model em maiúculo, se refere a model de fato, a entidade.
-    Vamos ter um IEnumerable, ou seja, uma lista de FornecedorViewModel, que é o modelo que vamos trabalhar.-->
-
-@using DevIO.ApplicationMVC.Extensions
+﻿@using DevIO.ApplicationMVC.Extensions
 @model IEnumerable<DevIO.ApplicationMVC.ViewModels.FornecedorViewModel>
 
 @{
     ViewBag.Title = "Lista de Fornecedores";
 }
 
-<hr/>
-
 <h2>@ViewBag.Title</h2>
+
+<hr />
 
 <p>
     <a class="btn btn-info" href="@Url.Action("Create", "Fornecedores")">
@@ -24,7 +20,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
-        </th>
+        </th> 
         <th>
             @Html.DisplayNameFor(model => model.Documento)
         </th>
@@ -34,27 +30,26 @@
         <th></th>
     </tr>
     </thead>
-
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @this.FormatarDocumento(item.TipoFornecedor, item.Documento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ativo)
-                </td>
-                <td class="text-right">
-                    <a class="btn btn-warning" href="@Url.Action("Details","Fornecedores", new {id = item.Id})"><span class="glyphicon glyphicon-search"></span></a>
-                    <a class="btn btn-info" href="@Url.Action("Edit", "Fornecedores", new {id = item.Id})"><spam class="glyphicon glyphicon-pencil"></spam> </a>
-                    <a class="btn btn-danger" href="@Url.Action("Delete", "Fornecedores", new {id = item.Id})"><spam class="glyphicon glyphicon-trash"></spam> </a>
-                </td>
-            </tr>
-        }
+       @foreach (var item in Model)
+       {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @this.FormatarDocumento(item.TipoFornecedor, item.Documento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td class="text-right">
+                <a class="btn btn-warning" href="@Url.Action("Details","Fornecedores", new {id = item.Id})"><span class="glyphicon glyphicon-search"></span></a>
+                <a class="btn btn-info" href="@Url.Action("Edit", "Fornecedores", new {id = item.Id})"><spam class="glyphicon glyphicon-pencil"></spam> </a>
+                <a class="btn btn-danger" href="@Url.Action("Delete", "Fornecedores", new {id = item.Id})"><spam class="glyphicon glyphicon-trash"></spam> </a>
+            </td>
+        </tr>
+       }
     </tbody>
 </table>
 

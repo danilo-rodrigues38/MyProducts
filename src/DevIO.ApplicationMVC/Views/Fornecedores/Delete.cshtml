@@ -18,10 +18,10 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt class="col-sm-2">
-            @this.FormatarDocumento( Model.TipoFornecedor, Model.Documento )
+            @Html.DisplayNameFor(model => model.Documento)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Documento)
+            @this.FormatarDocumento(Model.TipoFornecedor, Model.Documento)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Ativo)
@@ -34,6 +34,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+        @Html.Partial("_ErrorSummary")
 
         <div class="form-group">
             <input type="submit" value="Excluir" class="btn btn-danger" />
@@ -43,3 +44,4 @@
 </div>
 
 @Html.Partial("_DetalhesEndereco")
+

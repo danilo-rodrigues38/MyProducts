@@ -14,47 +14,48 @@
     <div class="col-md-6">
         <dl>
             <dt>
-                @Html.DisplayNameFor( model => model.FornecedorId )
+                @Html.DisplayNameFor(model => model.FornecedorId)
             </dt>
             <dd>
-                @Html.DisplayFor( model => model.Fornecedor.Nome )
+                @Html.DisplayFor(model => model.Fornecedor.Nome)
             </dd>
             <dt>
-                @Html.DisplayNameFor( model => model.Nome )
+                @Html.DisplayNameFor(model => model.Nome)
             </dt>
             <dd>
-                @Html.DisplayFor( model => model.Nome )
+                @Html.DisplayFor(model => model.Nome)
             </dd>
             <dt>
-                @Html.DisplayNameFor( model => model.Descricao )
+                @Html.DisplayNameFor(model => model.Descricao)
             </dt>
             <dd>
-                @Html.DisplayFor( model => model.Descricao )
+                @Html.DisplayFor(model => model.Descricao)
             </dd>
             <dt>
-                @Html.DisplayNameFor( model => model.Valor )
+                @Html.DisplayNameFor(model => model.Valor)
             </dt>
             <dd>
-                @Model.Valor.ToString( "C" )
+                @Model.Valor.ToString("C")
             </dd>
             <dt>
-                @Html.DisplayNameFor( model => model.DataCadastro )
+                @Html.DisplayNameFor(model => model.DataCadastro)
             </dt>
             <dd>
-                @Html.DisplayFor( model => model.DataCadastro )
+                @Html.DisplayFor(model => model.DataCadastro)
             </dd>
             <dt>
-                @Html.DisplayNameFor( model => model.Ativo )
+                @Html.DisplayNameFor(model => model.Ativo)
             </dt>
             <dd>
-                @Html.DisplayFor( model => model.Ativo )
+                @Html.DisplayFor(model => model.Ativo)
             </dd>
         </dl>
 
         <div>
-            @using (Html.BeginForm ( ))
+            @using (Html.BeginForm())
             {
-                @Html.AntiForgeryToken( )
+                @Html.AntiForgeryToken()
+                @Html.Partial("_ErrorSummary")
 
                 <div class="form-group">
                     <input type="submit" value="Excluir" class="btn btn-danger" />
