@@ -8,7 +8,7 @@ namespace DevIO.ApplicationMVC.Extensions
 {
     public class CustomAuthorization
     {
-        public static bool ValidarClaimsUsuário ( string claimName, string claimValue )
+        public static bool ValidarClaimsUsuario ( string claimName, string claimValue )
         {
             var identity = (ClaimsIdentity)HttpContext.Current.User.Identity;
             var claims = identity.Claims.FirstOrDefault(c => c.Type == claimName);
@@ -40,7 +40,7 @@ namespace DevIO.ApplicationMVC.Extensions
 
             protected override bool AuthorizeCore ( HttpContextBase httpContext )
             {
-                return CustomAuthorization.ValidarClaimsUsuário( _claimName, _claimValue );
+                return CustomAuthorization.ValidarClaimsUsuario( _claimName, _claimValue );
             }
         }
     }
