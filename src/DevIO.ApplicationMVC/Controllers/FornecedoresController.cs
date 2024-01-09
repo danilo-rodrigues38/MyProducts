@@ -10,6 +10,7 @@ using DevIO.Business.Models.Fornecedores.Services;
 
 namespace DevIO.ApplicationMVC.Controllers
 {
+    [Authorize]
     public class FornecedoresController : BaseController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
@@ -28,6 +29,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Index
 
+        [AllowAnonymous]
         [Route ("lista-de-fornecedores")]
         [HttpGet]
         public async Task<ActionResult> Index()
@@ -38,6 +40,7 @@ namespace DevIO.ApplicationMVC.Controllers
         #endregion
 
         #region Datails
+
         [Route ("dados-do-fornecedor/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
@@ -51,9 +54,11 @@ namespace DevIO.ApplicationMVC.Controllers
 
             return View(fornecedorViewModel);
         }
+
         #endregion
 
         #region Create
+
         [Route ("novo-fornecedor")]
         [HttpGet]
         public ActionResult Create()
@@ -75,9 +80,11 @@ namespace DevIO.ApplicationMVC.Controllers
 
             return RedirectToAction ("Index");
         }
+
         #endregion
 
         #region Edit
+
         [Route ("editar-fornecedor/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
@@ -108,9 +115,12 @@ namespace DevIO.ApplicationMVC.Controllers
 
             return RedirectToAction ("Index");
         }
+
         #endregion
 
         #region Delete
+
+        [Authorize(Roles = "Admin")]
         [Route ("excluir-fornecedor/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> Delete(Guid id)
@@ -125,6 +135,7 @@ namespace DevIO.ApplicationMVC.Controllers
             return View(fornecedorViewModel);
         }
 
+        [Authorize ( Roles = "Admin" )]
         [Route ( "excluir-fornecedor/{id:guid}" )]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -141,9 +152,11 @@ namespace DevIO.ApplicationMVC.Controllers
 
             return RedirectToAction ("Index");
         }
+
         #endregion
 
         #region Atualizar
+
         [Route ("atualizar-endereco-fornecedor/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> AtualizarEndereco(Guid id )
@@ -175,9 +188,11 @@ namespace DevIO.ApplicationMVC.Controllers
             var url = Url.Action("ObterEndereco", "Fornecedores", new { id = fornecedorViewModel.Endereco.FornecedorId });
             return Json ( new { success = true, url } );
         }
+
         #endregion
 
         #region ObterDadosFornecedorEndereco
+
         [Route ( "obter-endereco-fornecedor/{id:guid}" )]
         public async Task<ActionResult> ObterEndereco ( Guid id )
         {
@@ -200,6 +215,7 @@ namespace DevIO.ApplicationMVC.Controllers
         {
             return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorProdutoEndereco(id));
         }
+
         #endregion
 
         #region Dispose
