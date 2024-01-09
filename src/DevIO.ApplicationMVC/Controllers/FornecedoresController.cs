@@ -7,6 +7,7 @@ using DevIO.ApplicationMVC.ViewModels;
 using DevIO.Business.Core.Notificacoes;
 using DevIO.Business.Models.Fornecedores;
 using DevIO.Business.Models.Fornecedores.Services;
+using static DevIO.ApplicationMVC.Extensions.CustomAuthorization;
 
 namespace DevIO.ApplicationMVC.Controllers
 {
@@ -41,6 +42,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Datails
 
+        [AllowAnonymous]
         [Route ("dados-do-fornecedor/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
@@ -59,13 +61,14 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Create
 
+        [ClaimsAuthorize ( "Fornecedor", "Adicionar" )]
         [Route ("novo-fornecedor")]
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
-
+        [ClaimsAuthorize ( "Fornecedor", "Adicionar" )]
         [Route("novo-fornecedor")]
         [HttpPost]
         public async Task<ActionResult> Create(FornecedorViewModel fornecedorViewModel)
@@ -85,6 +88,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Edit
 
+        [ClaimsAuthorize ( "Fornecedor", "Editar" )]
         [Route ("editar-fornecedor/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
@@ -99,6 +103,7 @@ namespace DevIO.ApplicationMVC.Controllers
             return View(fornecedorViewModel);
         }
 
+        [ClaimsAuthorize ( "Fornecedor", "Editar" )]
         [Route("editar-fornecedor/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -120,7 +125,8 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Delete
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
+        [ClaimsAuthorize ( "Fornecedor", "Excluir" )]
         [Route ("excluir-fornecedor/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> Delete(Guid id)
@@ -135,7 +141,8 @@ namespace DevIO.ApplicationMVC.Controllers
             return View(fornecedorViewModel);
         }
 
-        [Authorize ( Roles = "Admin" )]
+        //[Authorize ( Roles = "Admin" )]
+        [ClaimsAuthorize ( "Fornecedor", "Excluir" )]
         [Route ( "excluir-fornecedor/{id:guid}" )]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
