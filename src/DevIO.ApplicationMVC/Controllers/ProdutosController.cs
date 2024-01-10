@@ -10,9 +10,11 @@ using DevIO.Business.Core.Notificacoes;
 using DevIO.Business.Models.Fornecedores;
 using DevIO.Business.Models.Produtos;
 using DevIO.Business.Models.Produtos.Services;
+using static DevIO.ApplicationMVC.Extensions.CustomAuthorization;
 
 namespace DevIO.ApplicationMVC.Controllers
 {
+    [Authorize]
     public class ProdutosController : BaseController
     {
         private readonly IProdutoRepository _produtoRepository;         // Para fazer leitura do banco de dados.
@@ -34,6 +36,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Index
 
+        [AllowAnonymous]
         [Route ("lista-de-produtos")]
         [HttpGet]
         public async Task<ActionResult> Index()
@@ -45,6 +48,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Details
 
+        [AllowAnonymous]
         [Route ("dados-de-produto/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> Details(Guid id)
@@ -63,6 +67,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Create
 
+        [ClaimsAuthorize ( "Produto", "Adicionar" )]
         [Route ("novo-produto")]
         [HttpGet]
         public async Task<ActionResult> Create()
@@ -72,6 +77,7 @@ namespace DevIO.ApplicationMVC.Controllers
             return View(produtoViewModel);
         }
 
+        [ClaimsAuthorize ( "Produto", "Adicionar" )]
         [Route ( "novo-produto" )]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -96,6 +102,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Edit
 
+        [ClaimsAuthorize ( "Produto", "Editar" )]
         [Route ("editar-produto/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
@@ -110,6 +117,7 @@ namespace DevIO.ApplicationMVC.Controllers
             return View(produtoViewModel);
         }
 
+        [ClaimsAuthorize ( "Produto", "Editar" )]
         [Route ( "editar-produto/{id:guid}" )]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -147,6 +155,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Delete
 
+        [ClaimsAuthorize ( "Produto", "Excluir" )]
         [Route ( "excluir-produto/{id:guid}" )]
         [HttpGet]
         public async Task<ActionResult> Delete(Guid id)
@@ -161,6 +170,7 @@ namespace DevIO.ApplicationMVC.Controllers
             return View(produtoViewModel);
         }
 
+        [ClaimsAuthorize ( "Produto", "Excluir" )]
         [Route ( "excluir-produto/{id:guid}" )]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

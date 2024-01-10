@@ -164,6 +164,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region Atualizar
 
+        [ClaimsAuthorize ( "Fornecedor", "Editar" )]
         [Route ("atualizar-endereco-fornecedor/{id:guid}")]
         [HttpGet]
         public async Task<ActionResult> AtualizarEndereco(Guid id )
@@ -178,6 +179,7 @@ namespace DevIO.ApplicationMVC.Controllers
             return PartialView ( "_AtualizarEndereco", new FornecedorViewModel { Endereco = fornecedor.Endereco } );
         }
 
+        [ClaimsAuthorize ( "Fornecedor", "Editar" )]
         [Route ( "atualizar-endereco-fornecedor/{id:guid}" )]
         [HttpPost]
         public async Task<ActionResult> AtualizarEndereco ( FornecedorViewModel fornecedorViewModel )
@@ -200,6 +202,7 @@ namespace DevIO.ApplicationMVC.Controllers
 
         #region ObterDadosFornecedorEndereco
 
+        [AllowAnonymous]
         [Route ( "obter-endereco-fornecedor/{id:guid}" )]
         public async Task<ActionResult> ObterEndereco ( Guid id )
         {
