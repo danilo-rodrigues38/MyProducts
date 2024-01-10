@@ -11,37 +11,37 @@ namespace DevIO.ApplicationMVC.Extensions
         public static bool ValidarClaimsUsuario ( string claimName, string claimValue )
         {
             var identity = (ClaimsIdentity)HttpContext.Current.User.Identity;
-            var claims = identity.Claims.FirstOrDefault(c => c.Type == claimName);
-            return claims != null && claims.Value.Contains( claimValue );
+            var claim = identity.Claims.FirstOrDefault(c => c.Type == claimName);
+            return claim != null && claim.Value.Contains ( claimValue );
+        }
+    }
+
+    public class ClaimsAuthorizeAttribute : AuthorizeAttribute
+    {
+        private readonly string _claimName;
+        private readonly string _claimValue;
+
+        public ClaimsAuthorizeAttribute ( string claimName, string claimValue )
+        {
+            _claimName = claimName;
+            _claimValue = claimValue;
         }
 
-        public class ClaimsAuthorizeAttribute : AuthorizeAttribute
+        protected override void HandleUnauthorizedRequest ( AuthorizationContext filterContext )
         {
-            private readonly string _claimName;
-            private readonly string _claimValue;
-
-            public ClaimsAuthorizeAttribute( string claimName, string claimValue)
+            if (filterContext.HttpContext.Request.IsAuthenticated)
             {
-                _claimName = claimName;
-                _claimValue = claimValue;
+                filterContext.Result = new HttpStatusCodeResult ( (int) HttpStatusCode.Forbidden );
             }
-
-            protected override void HandleUnauthorizedRequest ( AuthorizationContext filterContext )
+            else
             {
-                if ( filterContext.HttpContext.Request.IsAuthenticated )
-                {
-                    filterContext.Result = new HttpStatusCodeResult ( (int) HttpStatusCode.Forbidden );
-                }
-                else
-                {
-                    base.HandleUnauthorizedRequest ( filterContext );
-                }
+                base.HandleUnauthorizedRequest ( filterContext );
             }
+        }
 
-            protected override bool AuthorizeCore ( HttpContextBase httpContext )
-            {
-                return CustomAuthorization.ValidarClaimsUsuario( _claimName, _claimValue );
-            }
+        protected override bool AuthorizeCore ( HttpContextBase httpContext )
+        {
+            return CustomAuthorization.ValidarClaimsUsuario ( _claimName, _claimValue );
         }
     }
 }

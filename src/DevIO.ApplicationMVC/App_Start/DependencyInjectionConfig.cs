@@ -15,12 +15,12 @@ namespace DevIO.ApplicationMVC
 {
     public class DependencyInjectionConfig
     {
-        public static void RegisterDIContainer()
+        public static void RegisterDIContainer ( )
         {
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle ( );
 
-            InitializerContainer ( container );
+            InitializeContainer ( container );
 
             container.RegisterMvcControllers ( Assembly.GetExecutingAssembly ( ) );
 
@@ -29,23 +29,23 @@ namespace DevIO.ApplicationMVC
             DependencyResolver.SetResolver ( new SimpleInjectorDependencyResolver ( container ) );
         }
 
-        private static void InitializerContainer(Container container)
+        private static void InitializeContainer ( Container container )
         {
             // Lifestyle.Singleton
-            // Cria uma única instância por aplicação.
+            // Uma única instância por aplicação
 
             // Lifestyle.Transient
-            // Cria uma nova instância para cada injeção.
+            // Cria uma nova instância para cada injeção
 
-            // Lifestyle.Scoped
-            // Cria uma única instância por request.
+            //Lifestyle.Scoped
+            // Uma única instância por request
 
             container.Register<MyDbContext> ( Lifestyle.Scoped );
             container.Register<IProdutoRepository, ProdutoRepository> ( Lifestyle.Scoped );
             container.Register<IProdutoService, ProdutoService> ( Lifestyle.Scoped );
             container.Register<IFornecedorRepository, FornecedorRepository> ( Lifestyle.Scoped );
-            container.Register<IFornecedorService, FornecedorService> ( Lifestyle.Scoped );
             container.Register<IEnderecoRepository, EnderecoRepository> ( Lifestyle.Scoped );
+            container.Register<IFornecedorService, FornecedorService> ( Lifestyle.Scoped );
             container.Register<INotificador, Notificador> ( Lifestyle.Scoped );
 
             container.RegisterSingleton ( ( ) => AutoMapperConfig.GetMapperConfiguration ( ).CreateMapper ( container.GetInstance ) );

@@ -10,7 +10,7 @@ using DevIO.Business.Core.Notificacoes;
 using DevIO.Business.Models.Fornecedores;
 using DevIO.Business.Models.Produtos;
 using DevIO.Business.Models.Produtos.Services;
-using static DevIO.ApplicationMVC.Extensions.CustomAuthorization;
+using DevIO.ApplicationMVC.Extensions;
 
 namespace DevIO.ApplicationMVC.Controllers
 {

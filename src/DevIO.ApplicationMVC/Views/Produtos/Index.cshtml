@@ -9,7 +9,7 @@
 <hr />
 
 @{
-    if (this.PermitirExibicao ( "Produto", "Adicionar" ))
+    if (this.PermitirExibicao("Produto", "Adicionar"))
     {
         <p>
             <a class="btn btn-info" href="@Url.Action("Create", "Produtos")">
@@ -20,4 +20,4 @@
 }
 
 
-@Html.Partial( "_ListaProdutos" )
+@Html.Partial("_ListaProdutos")

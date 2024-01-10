@@ -10,29 +10,29 @@ namespace DevIO.ApplicationMVC
 {
     public class AutoMapperConfig
     {
-        public static MapperConfiguration GetMapperConfiguration()
+        public static MapperConfiguration GetMapperConfiguration ( )
         {
             var profiles = Assembly.GetExecutingAssembly()
-                                  .GetTypes()
-                                  .Where(x => typeof(Profile).IsAssignableFrom(x));
+                .GetTypes()
+                .Where(x => typeof(Profile).IsAssignableFrom(x));
 
-            return new MapperConfiguration(cfg =>
+            return new MapperConfiguration ( cfg =>
             {
                 foreach (var profile in profiles)
                 {
-                    cfg.AddProfile(Activator.CreateInstance(profile) as Profile);
+                    cfg.AddProfile ( Activator.CreateInstance ( profile ) as Profile );
                 }
-            });
+            } );
         }
     }
 
     public class AutoMapperProfile : Profile
     {
-        public AutoMapperProfile()
+        public AutoMapperProfile ( )
         {
-            CreateMap<Fornecedor, FornecedorViewModel>().ReverseMap();
-            CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
-            CreateMap<Produto, ProdutoViewModel>().ReverseMap();
+            CreateMap<Fornecedor, FornecedorViewModel> ( ).ReverseMap ( );
+            CreateMap<Endereco, EnderecoViewModel> ( ).ReverseMap ( );
+            CreateMap<Produto, ProdutoViewModel> ( ).ReverseMap ( );
         }
     }
 }
